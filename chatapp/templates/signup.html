@@ -1,0 +1,177 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create New Account</title>
+        {% load static %}
+
+        </head>
+        <style>
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #2a00b1, #f836ff);
+    font-family: Arial, sans-serif;
+}
+
+/* Container */
+.container {
+    width: 350px;
+    padding: 20px; /* Reduced padding */
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-height: 90vh; /* Ensure container fits within the screen */
+    overflow-y: auto; /* Scroll if content overflows */
+}
+
+/* Form Heading */
+h2 {
+    color: #fff;
+    margin-bottom: 20px; /* Reduced margin */
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    font-size: 24px; /* Reduced font size */
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+/* Input Fields */
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group select {
+    width: 100%;
+    padding: 10px; /* Reduced padding */
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    background: #fff;
+}
+
+/* Buttons */
+.signup-btn, .otp-btn, .submit-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    background-color: #b44cf0;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.signup-btn:hover, .otp-btn:hover, .submit-btn:hover {
+    background-color: #5a0878; /* Adjust as needed */
+}
+
+/* Error Messages */
+.error-message {
+    color: #ff4444;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Login Link */
+.login-link {
+    margin-top: 15px; /* Reduced margin */
+    color: #fff;
+}
+
+/* Media Query for iPhone 6S and similar devices (375x667) */
+@media (max-width: 375px) {
+    .container {
+        width: 90%;
+        padding: 15px; /* Further reduced padding */
+    }
+
+    h2 {
+        font-size: 22px;
+        margin-bottom: 15px; /* Reduced margin */
+    }
+
+    .form-group input {
+        padding: 9px; /* Reduced padding */
+    }
+
+    .signup-btn, .otp-btn, .submit-btn {
+        padding: 8px;
+        font-size: 14px; /* Reduced font size */
+    }
+
+    .login-link {
+        margin-top: 10px; /* Reduced margin */
+    }
+}
+
+/* Modal Styles */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto; /* Reduced margin */
+    padding: 15px; /* Reduced padding */
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 280px; /* Slightly reduced max-width */
+    text-align: center;
+    border-radius: 10px;
+}
+
+        </style>
+        <body>
+
+            <div class="container">
+                <h2>Create New Account</h2>
+        
+                <!-- Display non-field errors at the top of the form -->
+                {% if form.non_field_errors %}
+                    <div class="error-message">
+                        <ul>
+                            {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+        
+                <form method="post">
+                    {% csrf_token %}
+        
+                    {% for field in form %}
+                        <!-- Exclude unwanted fields by name -->
+                        {% if field.name != "usable_password" %}
+                        <div class="form-group">
+                                {{ field.label_tag }}
+                                {{ field }}
+                                {% if field.errors %}
+                                    <div class="error-message">
+                                        {% for error in field.errors %}
+                                            <div>{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+        
+                    <button type="submit" class="submit-btn">Sign Up</button>
+                </form>
+        
+                <div class="login-link">
+                    <p>Already a user? <a href="{% url 'signin' %}">Log in</a></p>
+                </div>
+            </div>
+        
+            <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        </body>
+    </html>

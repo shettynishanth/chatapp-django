@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/loginStyle.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Log In</h2>
+
+        <!-- Display non-field errors here -->
+        {% if form.non_field_errors %}
+            <div class="error-message">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form id="loginForm" method="post">
+            {% csrf_token %}
+            
+            <div class="input-group {% if form.username.errors %}error{% endif %}">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                <i class="fas fa-exclamation-circle error-icon"></i>
+                {% if form.username.errors %}
+                    <div class="error-message">
+                        {% for error in form.username.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="input-group {% if form.password.errors %}error{% endif %}">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+                <i class="fas fa-exclamation-circle error-icon"></i>
+                {% if form.password.errors %}
+                    <div class="error-message">
+                        {% for error in form.password.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="new-user" style="text-align:center; font-size:11;">
+                <p style="color:#fff">Forgot Password? <a href="{% url 'forgotPassword' %}" style="font-family:sans-serif;color:#fff;">Reset Password</a></p>
+            </div>
+            
+            <div class="remember-forgot" style="color:#fff;">
+                <label>
+                    <input type="checkbox" id="rememberMe"> Remember Me?
+                </label>
+            </div>
+            
+            <button type="submit" class="login-btn">Log In</button>
+        </form>
+        
+        <div class="new-user" style="text-align:center; font-size:11;">
+            <p style="color:#fff">New user? <a href="{% url 'signup' %}" style="font-family:sans-serif;color:#fff;">Create Account</a></p>
+        </div>
+    </div>
+
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</body>
+</html>
