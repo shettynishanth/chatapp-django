@@ -18,7 +18,7 @@ def generate_otp(user):
     send_mail(
         'Your OTP Code',
         f'Your OTP code is {otp_instance.otp_code}. Please enter this code to complete your registration.',
-        'shettynishanth100@gmail.com',  # Replace with your email
+        'shettynishanth200@gmail.com',  # Replace with your email
         [user.email],
         fail_silently=False,
     )
