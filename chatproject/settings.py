@@ -135,10 +135,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_FROM = 'ananthkharvi132@gmail.com'
-EMAIL_HOST_USER = 'ananthkharvi132@gmail.com'
+EMAIL_FROM = 'shettynishanth200@gmail.com'
+EMAIL_HOST_USER = 'shettynishanth200@gmail.com'
 # Replace with your actual email password or App Password
-EMAIL_HOST_PASSWORD = 'gnipjyainwixivoh'
+EMAIL_HOST_PASSWORD = 'Mail'
 
 # 2f verification should on
 # you have to generate the app password
