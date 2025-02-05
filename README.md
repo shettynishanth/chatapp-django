@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/d70ace6e-47e8-4572-bdb1-cf5b8acbe4f1)# chatapp-django
+chatapp-django
 Django Chat application
 GitHub Repository : https://github.com/shettynishanth/chatapp-django
 URL : https://shettynishnath.pythonanywhere.com/
